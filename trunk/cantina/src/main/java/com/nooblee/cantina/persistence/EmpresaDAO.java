@@ -1,4 +1,4 @@
-package com.nooblee.cantina.persistence;
+﻿package com.nooblee.cantina.persistence;
 
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;

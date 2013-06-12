@@ -1,4 +1,4 @@
-package com.nooblee.cantina.domain;
+﻿package com.nooblee.cantina.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;

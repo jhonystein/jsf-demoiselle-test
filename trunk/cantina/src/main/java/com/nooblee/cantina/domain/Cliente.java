@@ -1,4 +1,4 @@
-package com.nooblee.cantina.domain;
+﻿package com.nooblee.cantina.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,10 +1,20 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+﻿<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
-
 	<ui:define name="body">
 		<h:form prependId="false">
-
+			<p:fieldset legend="#{messages['cantina.label']}" toggleable="false" toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+					<h:outputLabel value="#{messages['cantina.label.uuid']}: " for="uuid" styleClass="text-input" />
+					<p:inputText id="uuid" value="#{cantinaEditMB.bean.uuid}" tabindex="1"
+						styleClass="mediumInput" title="#{messages['cantina.alt.uuid']}" />
+					<p:message for="uuid" />
+					<h:outputLabel value="#{messages['cantina.label.nome']}: " for="nome" styleClass="text-input" />
+					<p:inputText id="nome" value="#{cantinaEditMB.bean.nome}" tabindex="2"
+						styleClass="longInput" title="#{messages['cantina.alt.nome']}" />
+					<p:message for="nome" />
+				</h:panelGrid>
+			</p:fieldset>
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}" action="#{cantinaEditMB.insert}"
@@ -20,30 +30,38 @@
 						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
 					</p:confirmDialog>
 				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:commandButton value="#{messages['button.changepass']}" onclick="dlg.show()"
+						rendered="#{cantinaEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:dialog id="dialog" modal="true" header="#{messages['label.confirm.changepass']}" widgetVar="dlg">
+						<h:messages id="msgSenhas"/>
+						<h:panelGrid columns="2">
+							
+							<h:outputLabel value="Digite a Nova Senha:*" for="senha" />
+							<p:password id="senha" value="#{cantinaEditMB.bean.senha}" match="repita" required="true"/>
+
+							<h:outputLabel value="Repita a Nova Senha:*" for="repita" />
+							<p:password id="repita" value="#{cantinaEditMB.bean.senha}" required="true"/>
+							
+							<f:facet name="footer">
+								<p:commandButton id="mudarSenha" value="Confirmar" update="msgSenhas" 
+									actionListener="#{cantinaEditMB.alterarSenha}"
+									oncomplete="handleLoginRequest(xhr, status, args)"/>
+							</f:facet>
+						</h:panelGrid>
+					</p:dialog>
+				</p:toolbarGroup>
 			</p:toolbar>
-
-			<br />
-
-			<p:fieldset legend="#{messages['cantina.label']}" toggleable="true" toggleSpeed="500">
-				<h:panelGrid id="fields" columns="3">
-					
-					<h:outputLabel value="#{messages['cantina.label.uuid']}: " for="uuid" styleClass="text-input" />
-					<h:inputText id="uuid" value="#{cantinaEditMB.bean.uuid}"
-						title="#{messages['cantina.alt.uuid']}" />
-					<p:message for="uuid" />
-					
-					<h:outputLabel value="#{messages['cantina.label.nome']}: " for="nome" styleClass="text-input" />
-					<h:inputText id="nome" value="#{cantinaEditMB.bean.nome}"
-						title="#{messages['cantina.alt.nome']}" />
-					<p:message for="nome" />
-					
-					<h:outputLabel value="#{messages['cantina.label.senha']}: " for="senha" styleClass="text-input" />
-					<h:inputSecret id="senha" value="#{cantinaEditMB.bean.senha}"
-						title="#{messages['cantina.alt.senha']}" />
-					<p:message for="senha" />
-					
-				</h:panelGrid>
-			</p:fieldset>
 		</h:form>
+		<script type="text/javascript">  
+		    function handleLoginRequest(xhr, status, args) {  
+		        if(args.validationFailed) {  
+		            dlg.jq.effect("shake", { times:5 }, 100);  
+		        }   
+		        else {  
+		            dlg.hide();  
+		        }  
+		    }  
+		</script> 
 	</ui:define>
 </ui:composition>
