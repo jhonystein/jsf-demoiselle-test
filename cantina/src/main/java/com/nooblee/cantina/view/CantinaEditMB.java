@@ -1,5 +1,8 @@
-package com.nooblee.cantina.view;
+﻿package com.nooblee.cantina.view;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -43,4 +46,16 @@ public class CantinaEditMB extends AbstractEditPageBean<Cantina, Long> {
 		setBean(this.cantinaBC.load(getId()));
 	}
 
+	@Transactional
+	public void alterarSenha(ActionEvent ae) {
+		FacesMessage msg = null;
+		try {
+			this.cantinaBC.update(getBean());
+			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso...", "Senha alterada com sucesso!!!");
+		} catch (Exception ex) {
+			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro...", "Problemas na alteração da senha!!!");
+		}
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
 }

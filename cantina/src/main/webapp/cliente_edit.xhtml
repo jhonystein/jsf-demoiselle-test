@@ -1,8 +1,34 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+﻿<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 	<ui:define name="body">
 		<h:form prependId="false">
+			<p:fieldset legend="#{messages['cliente.label']}" toggleable="false" toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+					<h:outputLabel value="#{messages['cliente.label.empresa']}: " for="empresa" styleClass="text-input" />
+					<p:selectOneMenu id="empresa" value="#{clienteEditMB.bean.empresa}" tabindex="1"
+						style="width: 23em">
+						<f:selectItems value="#{clienteEditMB.empresas}" var="emp" itemLabel="#{emp.nome}"/>
+					</p:selectOneMenu>
+					<p:message for="empresa" />
+					<h:outputLabel value="#{messages['cliente.label.nome']}: " for="nome" styleClass="text-input" />
+					<p:inputText id="nome" value="#{clienteEditMB.bean.nome}"  tabindex="2"
+						styleClass="longInput" title="#{messages['cliente.alt.nome']}" />
+					<p:message for="nome" />
+					<h:outputLabel value="#{messages['cliente.label.documento']}: " for="documento" styleClass="text-input" />
+					<p:inputMask id="documento" value="#{clienteEditMB.bean.documento}" mask="999.999.999-99" tabindex="3"
+						styleClass="mediumInput" title="#{messages['cliente.alt.documento']}" />
+					<p:message for="documento" />
+					<h:outputLabel value="#{messages['cliente.label.codigo']}: " for="codigo" styleClass="text-input" />
+					<p:inputText id="codigo" value="#{clienteEditMB.bean.codigo}" tabindex="4"
+						styleClass="shortInput" title="#{messages['cliente.alt.codigo']}" />
+					<p:message for="codigo" />
+					<h:outputLabel value="#{messages['cliente.label.telefone']}: " for="telefone" styleClass="text-input" />
+					<p:inputMask id="telefone" value="#{clienteEditMB.bean.telefone}" mask="(99) 9999-9999" tabindex="5"
+						styleClass="mediumInput" title="#{messages['cliente.alt.telefone']}" />
+					<p:message for="telefone" />
+				</h:panelGrid>
+			</p:fieldset>
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}" action="#{clienteEditMB.insert}"
@@ -19,36 +45,6 @@
 					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
-			<br />
-			<p:fieldset legend="#{messages['cliente.label']}" toggleable="true" toggleSpeed="500">
-				<h:panelGrid id="fields" columns="3">
-					<h:outputLabel value="#{messages['cliente.label.empresa']}: " for="empresa" styleClass="text-input" />
-					<p:selectOneMenu id="empresa" value="#{clienteEditMB.bean.empresa}">
-						<f:selectItems value="#{clienteEditMB.empresas}" var="emp" itemLabel="#{emp.nome}"/>
-					</p:selectOneMenu>
-					<p:message for="empresa" />
-					<h:outputLabel value="#{messages['cliente.label.nome']}: " for="nome" styleClass="text-input" />
-					<h:inputText id="nome" value="#{clienteEditMB.bean.nome}"
-						title="#{messages['cliente.alt.nome']}" />
-					<p:message for="nome" />
-					<h:outputLabel value="#{messages['cliente.label.documento']}: " for="documento" styleClass="text-input" />
-					<h:inputText id="documento" value="#{clienteEditMB.bean.documento}"
-						title="#{messages['cliente.alt.documento']}" />
-					<p:message for="documento" />
-					<h:outputLabel value="#{messages['cliente.label.codigo']}: " for="codigo" styleClass="text-input" />
-					<h:inputText id="codigo" value="#{clienteEditMB.bean.codigo}"
-						title="#{messages['cliente.alt.codigo']}" />
-					<p:message for="codigo" />
-					<h:outputLabel value="#{messages['cliente.label.telefone']}: " for="telefone" styleClass="text-input" />
-					<h:inputText id="telefone" value="#{clienteEditMB.bean.telefone}"
-						title="#{messages['cliente.alt.telefone']}" />
-					<p:message for="telefone" />
-					<h:outputLabel value="#{messages['cliente.label.senha']}: " for="senha" styleClass="text-input" />
-					<h:inputSecret id="senha" value="#{clienteEditMB.bean.senha}"
-						title="#{messages['cliente.alt.senha']}" />
-					<p:message for="senha" />
-				</h:panelGrid>
-			</p:fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>

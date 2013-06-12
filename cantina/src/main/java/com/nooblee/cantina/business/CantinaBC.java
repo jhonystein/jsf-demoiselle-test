@@ -1,4 +1,4 @@
-package com.nooblee.cantina.business;
+﻿package com.nooblee.cantina.business;
 
 import br.gov.frameworkdemoiselle.lifecycle.Startup;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;

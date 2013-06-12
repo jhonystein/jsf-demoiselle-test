@@ -1,4 +1,4 @@
-package com.nooblee.cantina.view;
+﻿package com.nooblee.cantina.view;
 
 import javax.inject.Inject;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
