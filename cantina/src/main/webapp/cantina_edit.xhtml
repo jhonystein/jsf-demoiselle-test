@@ -38,10 +38,10 @@
 						<h:panelGrid columns="2">
 							
 							<h:outputLabel value="Digite a Nova Senha:*" for="senha" />
-							<p:password id="senha" value="#{cantinaEditMB.bean.senha}" match="repita" required="true"/>
+							<p:password id="senha" value="#{cantinaEditMB.bean.senha}" match="repita"/>
 
 							<h:outputLabel value="Repita a Nova Senha:*" for="repita" />
-							<p:password id="repita" value="#{cantinaEditMB.bean.senha}" required="true"/>
+							<p:password id="repita" value="#{cantinaEditMB.bean.senha}"/>
 							
 							<f:facet name="footer">
 								<p:commandButton id="mudarSenha" value="Confirmar" update="msgSenhas" 

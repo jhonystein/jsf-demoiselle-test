@@ -3,6 +3,7 @@
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 
@@ -30,6 +31,10 @@ public class MovimentoEditMB extends AbstractEditPageBean<Movimento, Long> {
 	
 	private String codigoCliente;
 	
+	private String senhaCliente;
+	
+	private boolean logedIn;
+	
 	@Inject
 	private Logger logger;
 	
@@ -39,6 +44,22 @@ public class MovimentoEditMB extends AbstractEditPageBean<Movimento, Long> {
 	
 	public void setCodigoCliente(String codigoCliente) {
 		this.codigoCliente = codigoCliente;
+	}
+	
+	public String getSenhaCliente() {
+		return senhaCliente;
+	}
+	
+	public void setSenhaCliente(String senhaCliente) {
+		this.senhaCliente = senhaCliente;
+	}
+	
+	public boolean isLogedIn() {
+		return logedIn;
+	}
+	
+	public void setLogedIn(boolean logedIn) {
+		this.logedIn = logedIn;
 	}
 	
 	@Override
@@ -62,6 +83,7 @@ public class MovimentoEditMB extends AbstractEditPageBean<Movimento, Long> {
 		return getPreviousView();
 	}
 	
+	@Transactional
 	public String lancarDebito() {
 		getBean().setTipo("D");
 		this.movimentoBC.insert(getBean());
@@ -82,12 +104,22 @@ public class MovimentoEditMB extends AbstractEditPageBean<Movimento, Long> {
 		setBean(this.movimentoBC.load(getId()));
 	}
 	
+	@Transactional
+	public void logarCliente(ActionEvent evt) {
+		// TODO
+	}
+	
+	@Transactional
+	public void alterarSenha(ActionEvent evt) {
+		// TODO
+	}
+	
 	public void buscaCliente(ValueChangeEvent evt) {
 		logger.debug("Teste... " + this.codigoCliente);
 		List<Cliente> clientes = clienteBC.findByAnything(evt.getNewValue().toString());
 		if (clientes.size() == 1) {
-			getBean().setCliente(clientes.get(0));
-			this.codigoCliente = getBean().getCliente().getNome();
+			Cliente c = clientes.get(0);
+			getBean().setCliente(c);
 		} else {
 			// aparecer a janela de seleção
 		}
