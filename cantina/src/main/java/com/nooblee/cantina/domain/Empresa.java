@@ -6,13 +6,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
-@Table(name="empresas")
+@Table(name="EMPRESAS")
+@TableGenerator(name="empresaGen", table="SENQUENCIAS", 
+		pkColumnName="GEN_KEY", valueColumnName="GEN_VALUE", 
+		pkColumnValue="EMPRESA_ID", allocationSize=1)
 public class Empresa {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="empresaGen")
 	@Column(name="empresaid")
 	private Long id;
 	@Column(name="nome", length=60)

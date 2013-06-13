@@ -42,5 +42,10 @@ public class EmpresaEditMB extends AbstractEditPageBean<Empresa, Long> {
 	protected void handleLoad() {
 		setBean(this.empresaBC.load(getId()));
 	}
+	
+	public String cleanPassword() {
+		getBean().setSenha("1234");
+		return update();
+	}
 
 }

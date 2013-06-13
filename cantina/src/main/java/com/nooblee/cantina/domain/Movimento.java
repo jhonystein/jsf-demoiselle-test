@@ -11,15 +11,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "movimentos")
+@Table(name = "MOVIMENTOS")
+@TableGenerator(name="movimentoGen", table="SENQUENCIAS", 
+		pkColumnName="GEN_KEY", valueColumnName="GEN_VALUE", 
+		pkColumnValue="MOVIMENTO_ID", allocationSize=1)
 public class Movimento {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="movimentoGen")
 	@Column(name = "movimentoid")
 	private Long id;
 	@ManyToOne
