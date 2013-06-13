@@ -30,6 +30,16 @@
 						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
 					</p:confirmDialog>
 				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:commandButton value="#{messages['button.cleanpass']}" onclick="dlg.show()"
+						rendered="#{cantinaEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.cleanpass']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.cleanpass']}" severity="alert" widgetVar="dlg">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{empresaEditMB.cleanPassword}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="dlg.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
 			</p:toolbar>
 		</h:form>
 	</ui:define>
