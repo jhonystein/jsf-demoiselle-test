@@ -1,5 +1,6 @@
 ﻿package com.nooblee.cantina.view;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.event.ValueChangeEvent;
@@ -7,7 +8,6 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -18,7 +18,6 @@ import com.nooblee.cantina.domain.Cliente;
 import com.nooblee.cantina.domain.Movimento;
 
 @ViewController
-@PreviousView("./movimento_list.jsf")
 public class MovimentoEditMB extends AbstractEditPageBean<Movimento, Long> {
 
 	private static final long serialVersionUID = 1L;
@@ -61,6 +60,21 @@ public class MovimentoEditMB extends AbstractEditPageBean<Movimento, Long> {
 	public String update() {
 		this.movimentoBC.update(getBean());
 		return getPreviousView();
+	}
+	
+	public String lancarDebito() {
+		getBean().setTipo("D");
+		this.movimentoBC.insert(getBean());
+		this.codigoCliente="";
+		this.setBean(this.createBean());
+		return null;
+	}
+	
+	@Override
+	protected Movimento createBean() {
+		Movimento m = super.createBean();
+		m.setLancamento(new Date());
+		return m;
 	}
 	
 	@Override

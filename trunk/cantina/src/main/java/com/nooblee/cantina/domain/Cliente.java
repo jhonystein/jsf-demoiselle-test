@@ -8,29 +8,40 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
-@Table(name="clientes")
+@Table(name="CLIENTES")
+@TableGenerator(name="clienteGen", table="SENQUENCIAS", 
+		pkColumnName="GEN_KEY", valueColumnName="GEN_VALUE", 
+		pkColumnValue="CLIENTE_ID", allocationSize=1)
 public class Cliente {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="clienteGen")
 	@Column(name="clienteid")
 	private Long id;
+	
 	@ManyToOne
 	@JoinColumn(name="cantinaid")
 	private Cantina cantina;
+	
 	@ManyToOne
 	@JoinColumn(name="empresaid")
 	private Empresa empresa;
+	
 	@Column(name="nome", length=60)
 	private String nome;
+	
 	@Column(name="documento", length=20)
 	private String documento;
+	
 	@Column(name="codigo", length=20)
 	private String codigo;
+	
 	@Column(name="telefone", length=20)
 	private String telefone;
+	
 	@Column(name="senha", length=20)
 	private String senha;
 

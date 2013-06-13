@@ -6,19 +6,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
-@Table(name="cantinas")
+@Table(name="CANTINAS")
+@TableGenerator(name="cantinaGen", table="SENQUENCIAS", 
+		pkColumnName="GEN_KEY", valueColumnName="GEN_VALUE", 
+		pkColumnValue="CANTINA_ID", allocationSize=1)
 public class Cantina {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="cantinaGen")
 	@Column(name="cantinaid")
 	private Long id;
+	
 	@Column(name="uuid", unique=true)
 	private String uuid;
+	
 	@Column(name="nome", length=60)
 	private String nome;
+	
 	@Column(name="senha", length=20)
 	private String senha;
 
