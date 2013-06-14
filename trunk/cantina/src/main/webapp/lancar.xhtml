@@ -7,10 +7,14 @@
 	template="/template/main.xhtml">
 	<ui:define name="body">
 		<h:form prependId="false">
-			<p:fieldset legend="#{messages['movimento.label']}"
-				toggleable="false" toggleSpeed="500">
-			<h:messages />
+			<p:fieldset legend="#{messages['movimento.label']}" toggleable="false" >
+			
+				<h:messages id="msgMovimento"/>
+				<p:focus id="focus" context="fields"/>
+				
 				<h:panelGrid id="fields" columns="3">
+				
+					 
 					<h:outputLabel value="#{messages['movimento.label.lancamento']}: "
 						for="lancamento" styleClass="text-input" />
 					<p:calendar id="lancamento"
@@ -30,11 +34,10 @@
 					<h:outputLabel value="#{messages['movimento.label.cliente']}: "
 						for="cliente" styleClass="text-input" />
 					<p:inputText id="cliente" value="#{movimentoEditMB.codigoCliente}"
-						tabindex="2" required="true" 
+						tabindex="2" required="true"
 						disabled="#{not empty movimentoEditMB.bean.cliente}"
 						valueChangeListener="#{movimentoEditMB.buscaCliente}"
 						title="#{messages['movimento.alt.cliente']}" onblur="submit()" >
-						<p:focus/>
 					</p:inputText>
 					<h:outputText value="#{movimentoEditMB.bean.cliente.nome}" />
 
@@ -43,27 +46,27 @@
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}" onclick="loginDlg.show()"
-						rendered="#{not empty movimentoEditMB.bean.cliente.senha}" type="button" immediate="true" />
+						rendered="#{not empty movimentoEditMB.bean.cliente.senha}" />
 					<p:commandButton value="#{messages['button.save']}" onclick="changeDlg.show()"
-						rendered="#{empty movimentoEditMB.bean.cliente.senha}" type="button" immediate="true" />
+						rendered="#{not empty movimentoEditMB.bean.cliente and empty movimentoEditMB.bean.cliente.senha}" />
 				</p:toolbarGroup>
 			</p:toolbar>
-			<p:dialog id="loginDlg" modal="true" header="Informe a Senha" 
-				widgetVar="loginDlg">
+			
+			<p:dialog id="loginDialog" modal="true" header="Informe a Senha" widgetVar="loginDlg">
 				<h:messages id="msgLogin"/>
 				<h:panelGrid columns="2">
 					<h:outputLabel value="#{messages['cliente.label.senha']}: "
 						for="senha" styleClass="text-input" />
 					<p:password id="senha" value="#{movimentoEditMB.senhaCliente}" />
 					<f:facet name="footer">  
-		                <p:commandButton id="loginButton" value="Confirmar" update="msgLogin"
-		                    actionListener="#{movimentoEditMB.logarCliente}" 
-		                    oncomplete="handleLoginRequest(xhr, status, args)"/>  
+		                <p:commandButton id="loginButton" value="Confirmar" update="msgLogin fields focus"
+		                    actionListener="#{movimentoEditMB.logarCliente}" process="@this senha"
+		                    tabindex="3" oncomplete="handleLoginRequest(xhr, status, args)"/>  
 		            </f:facet>
 				</h:panelGrid>
 			</p:dialog>
-			<p:dialog id="changeDlg" modal="true" header="#{messages['label.confirm.changepass']}" 
-				widgetVar="changeDlg">
+			
+			<p:dialog id="changeDialog" modal="true" header="#{messages['label.confirm.changepass']}" widgetVar="changeDlg">
 				<h:messages id="msgSenhas"/>
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Digite a Nova Senha:*" for="senhaNova" />
@@ -71,7 +74,7 @@
 					<h:outputLabel value="Repita a Nova Senha:*" for="repitaSenha" />
 					<p:password id="repitaSenha" value="#{movimentoEditMB.senhaCliente}"/>
 					<f:facet name="footer">
-						<p:commandButton id="mudarSenha" value="Confirmar" update="msgSenhas" 
+						<p:commandButton id="mudarSenha" value="Confirmar" update="msgLogin fields focus" 
 							actionListener="#{movimentoEditMB.alterarSenha}"
 							oncomplete="handleChangeRequest(xhr, status, args)"/>
 					</f:facet>
@@ -81,10 +84,10 @@
 		<script type="text/javascript">  
 		    function handleLoginRequest(xhr, status, args) {  
 		        if(args.validationFailed || !args.loggedIn) {  
-		        	loginDialog.jq.effect("shake", { times:5 }, 100);  
+		        	loginDlg.jq.effect("shake", { times:5 }, 100);  
 		        }   
 		        else {  
-		        	loginDialog.hide();  
+		        	loginDlg.hide();  
 		        }  
 		    }  
 		    function handleChangeRequest(xhr, status, args) {  

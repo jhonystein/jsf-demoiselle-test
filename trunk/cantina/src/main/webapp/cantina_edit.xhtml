@@ -38,10 +38,10 @@
 						<h:panelGrid columns="2">
 							
 							<h:outputLabel value="Digite a Nova Senha:*" for="senha" />
-							<p:password id="senha" value="#{cantinaEditMB.bean.senha}" match="repita"/>
+							<p:password id="senha" value="#{cantinaEditMB.novaSenha}" match="repita" validatorMessage="Senhas devem ser idênticas!!!"/>
 
 							<h:outputLabel value="Repita a Nova Senha:*" for="repita" />
-							<p:password id="repita" value="#{cantinaEditMB.bean.senha}"/>
+							<p:password id="repita" value="#{cantinaEditMB.novaSenha}"/>
 							
 							<f:facet name="footer">
 								<p:commandButton id="mudarSenha" value="Confirmar" update="msgSenhas" 
@@ -55,7 +55,7 @@
 		</h:form>
 		<script type="text/javascript">  
 		    function handleLoginRequest(xhr, status, args) {  
-		        if(args.validationFailed) {  
+		        if(args.validationFailed || !args.serverValidation) {  
 		            dlg.jq.effect("shake", { times:5 }, 100);  
 		        }   
 		        else {  

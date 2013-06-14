@@ -48,15 +48,15 @@
 					<p:commandButton value="#{messages['button.changepass']}" onclick="dlg.show()"
 						rendered="#{cantinaEditMB.updateMode}" type="button" immediate="true" ajax="false" />
 					<p:dialog id="dialog" modal="true" header="#{messages['label.confirm.changepass']}" 
-						widgetVar="dlg" rendered="#{!clienteEditMB.updateMode}">
+						widgetVar="dlg">
 						<h:messages id="msgSenhas"/>
 						<h:panelGrid columns="2">
 							
 							<h:outputLabel value="Digite a Nova Senha:*" for="senha" />
-							<p:password id="senha" value="#{clienteEditMB.bean.senha}" match="repita" required="true"/>
+							<p:password id="senha" value="#{clienteEditMB.novaSenha}" match="repita" validatorMessage="Senhas devem ser idênticas!!!"/>
 
 							<h:outputLabel value="Repita a Nova Senha:*" for="repita" />
-							<p:password id="repita" value="#{clienteEditMB.bean.senha}" required="true"/>
+							<p:password id="repita" value="#{clienteEditMB.novaSenha}"/>
 							
 							<f:facet name="footer">
 								<p:commandButton id="mudarSenha" value="Confirmar" update="msgSenhas" 
@@ -70,13 +70,13 @@
 		</h:form>
 		<script type="text/javascript">  
 		    function handleLoginRequest(xhr, status, args) {  
-		        if(args.validationFailed) {  
+		        if(args.validationFailed || !args.serverValidation) {  
 		            dlg.jq.effect("shake", { times:5 }, 100);  
 		        }   
 		        else {  
 		            dlg.hide();  
 		        }  
 		    }  
-		</script> 
+		</script>
 	</ui:define>
 </ui:composition>
