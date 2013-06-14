@@ -10,10 +10,8 @@
 			<p:fieldset legend="#{messages['movimento.label']}" toggleable="false" >
 			
 				<h:messages id="msgMovimento"/>
-				<p:focus id="focus" context="fields"/>
-				
+				<p:focus context="fields"/>
 				<h:panelGrid id="fields" columns="3">
-				
 					 
 					<h:outputLabel value="#{messages['movimento.label.lancamento']}: "
 						for="lancamento" styleClass="text-input" />
@@ -59,7 +57,7 @@
 						for="senha" styleClass="text-input" />
 					<p:password id="senha" value="#{movimentoEditMB.senhaCliente}" />
 					<f:facet name="footer">  
-		                <p:commandButton id="loginButton" value="Confirmar" update="msgLogin fields focus"
+		                <p:commandButton id="loginButton" value="Confirmar" update="msgLogin fields"
 		                    actionListener="#{movimentoEditMB.logarCliente}" process="@this senha"
 		                    tabindex="3" oncomplete="handleLoginRequest(xhr, status, args)"/>  
 		            </f:facet>
@@ -74,7 +72,7 @@
 					<h:outputLabel value="Repita a Nova Senha:*" for="repitaSenha" />
 					<p:password id="repitaSenha" value="#{movimentoEditMB.senhaCliente}"/>
 					<f:facet name="footer">
-						<p:commandButton id="mudarSenha" value="Confirmar" update="msgLogin fields focus" 
+						<p:commandButton id="mudarSenha" value="Confirmar" update="msgLogin fields" 
 							actionListener="#{movimentoEditMB.alterarSenha}"
 							oncomplete="handleChangeRequest(xhr, status, args)"/>
 					</f:facet>
