@@ -3,10 +3,14 @@
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 
+import org.apache.commons.lang.StringUtils;
+import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -106,18 +110,63 @@ public class MovimentoEditMB extends AbstractEditPageBean<Movimento, Long> {
 	
 	@Transactional
 	public void logarCliente(ActionEvent evt) {
-		// TODO
+		
+		boolean loggedIn = false;
+		FacesMessage msg = null;
+		
+		try {
+			if (StringUtils.isEmpty(senhaCliente)) {
+				msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senha não pode ser em branco!!!", "");
+			} else if (!senhaCliente.equals(getBean().getCliente().getSenha())) {
+				msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senha incorreta!!!", "");
+			} else {
+				msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário logado com sucesso!!!", "");
+				loggedIn = true;
+				lancarDebito();
+			}
+		} catch (Exception ex) {
+			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Problemas na autenticação da senha!!!", ex.getMessage());
+		}
+		
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		RequestContext.getCurrentInstance().addCallbackParam("loggedIn", loggedIn);
+
 	}
 	
 	@Transactional
 	public void alterarSenha(ActionEvent evt) {
-		// TODO
+		
+		boolean loggedIn = false;
+		FacesMessage msg = null;
+		
+		try {
+			if (StringUtils.isEmpty(senhaCliente)) {
+				msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senha não pode ser em branco!!!", "");
+			} else if (!senhaCliente.equals(getBean().getCliente().getSenha())) {
+				Cliente c = getBean().getCliente();
+				c.setSenha(senhaCliente);
+				clienteBC.update(c);
+				msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Senha alterada com sucesso!!!", "");
+				loggedIn = true;
+				lancarDebito();
+			}
+		} catch (Exception ex) {
+			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Problemas na atualização da senha!!!", ex.getMessage());
+		}
+		
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		RequestContext.getCurrentInstance().addCallbackParam("loggedIn", loggedIn);
+
+		
 	}
 	
 	public void buscaCliente(ValueChangeEvent evt) {
 		logger.debug("Teste... " + this.codigoCliente);
 		List<Cliente> clientes = clienteBC.findByAnything(evt.getNewValue().toString());
-		if (clientes.size() == 1) {
+		if (clientes.size() == 0) {
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cliente não encontrado!!!", null);
+			FacesContext.getCurrentInstance().addMessage(null, msg );
+		} else if (clientes.size() == 1) {
 			Cliente c = clientes.get(0);
 			getBean().setCliente(c);
 		} else {

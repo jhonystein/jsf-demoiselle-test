@@ -6,6 +6,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
+
+import org.apache.commons.lang.StringUtils;
+import org.primefaces.context.RequestContext;
+
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -24,10 +28,19 @@ public class ClienteEditMB extends AbstractEditPageBean<Cliente, Long> {
 	@Inject
 	private ClienteBC clienteBC;
 	
-	
 	@Inject
 	private EmpresaBC empresaBC;
 
+	private String novaSenha;
+	
+	public String getNovaSenha() {
+		return novaSenha;
+	}
+	
+	public void setNovaSenha(String novaSenha) {
+		this.novaSenha = novaSenha;
+	}
+	
 	public List<Empresa> getEmpresas() {
 		return empresaBC.findAll();
 	}
@@ -60,14 +73,25 @@ public class ClienteEditMB extends AbstractEditPageBean<Cliente, Long> {
 	
 	@Transactional
 	public void alterarSenha(ActionEvent ae) {
+		
+		boolean serverValidation = false;
 		FacesMessage msg = null;
+		
 		try {
-			this.clienteBC.update(getBean());
-			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso...", "Senha alterada com sucesso!!!");
+			if (StringUtils.isNotEmpty(novaSenha)) {
+				getBean().setSenha(novaSenha);
+				this.clienteBC.update(getBean());
+				msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Senha alterada com sucesso!!!", "");
+				serverValidation = true;
+			} else {
+				msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senha não pode ser em branco!!!", "");
+			}
 		} catch (Exception ex) {
-			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro...", "Problemas na alteração da senha!!!");
+			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Problemas na alteração da senha!!!", ex.getMessage());
 		}
+		
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+		RequestContext.getCurrentInstance().addCallbackParam("serverValidation", serverValidation);
 	}
 
 

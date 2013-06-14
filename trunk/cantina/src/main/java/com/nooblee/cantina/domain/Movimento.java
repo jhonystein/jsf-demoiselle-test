@@ -26,15 +26,19 @@ public class Movimento {
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="movimentoGen")
 	@Column(name = "movimentoid")
 	private Long id;
+
 	@ManyToOne
 	@JoinColumn(name = "clienteid")
 	private Cliente cliente;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "lancamento")
 	private Date lancamento;
+	
 	@Column(name = "tipo")
 	private String tipo;
-	@Column(name = "valor")
+	
+	@Column(name = "valor", precision=10, scale=2)
 	private BigDecimal valor;
 
 	public Long getId() {
