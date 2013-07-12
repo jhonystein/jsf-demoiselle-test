@@ -30,5 +30,10 @@ public class ClienteBC extends DelegateCrud<Cliente, Long, ClienteDAO> {
 	public List<Cliente> findByAnything(String anything) {
 		return getDelegate().findByCodigo(anything);
 	}
+
+	public List<Cliente> findByCodigo(String codigo) {
+		return getDelegate().findByCodigo(codigo);
+	}
+	
 	
 }

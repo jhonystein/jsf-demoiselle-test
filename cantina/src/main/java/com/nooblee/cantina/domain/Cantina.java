@@ -26,6 +26,9 @@ public class Cantina {
 	@Column(name="nome", length=60)
 	private String nome;
 	
+	@Column(name="email", length=120)
+	private String email;
+	
 	@Column(name="senha", length=20)
 	private String senha;
 
@@ -53,6 +56,14 @@ public class Cantina {
 		this.nome = nome;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getSenha() {
 		return senha;
 	}

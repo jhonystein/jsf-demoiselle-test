@@ -24,4 +24,9 @@ public class ClienteDAO extends JPACrud<Cliente, Long> {
 		return findByJPQL("select c from " + getBeanClass().getSimpleName() + " c where c.codigo = '" + codigo + "'");
 	}
 	
+	@Override
+	public List<Cliente> findAll() {
+		return findByJPQL("select c from " + getBeanClass().getSimpleName() + " c order by c.nome");
+	}
+	
 }

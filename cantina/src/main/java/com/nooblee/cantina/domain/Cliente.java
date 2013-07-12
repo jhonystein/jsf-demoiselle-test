@@ -36,6 +36,9 @@ public class Cliente {
 	@Column(name="documento", length=20)
 	private String documento;
 	
+	@Column(name="email", length=120)
+	private String email;
+	
 	@Column(name="codigo", length=20)
 	private String codigo;
 	
@@ -85,6 +88,14 @@ public class Cliente {
 		this.documento = documento;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getCodigo() {
 		return codigo;
 	}
