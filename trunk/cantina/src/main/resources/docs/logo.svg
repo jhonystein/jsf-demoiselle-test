@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="C:\desenvolvimento\projeto\workspace\maven.1370960917610\cantina\src\main\resources\docs\logo.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.9241935"
+     inkscape:cx="179.03824"
+     inkscape:cy="754.75208"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <sodipodi:guide
+       orientation="0,1"
+       position="155.59846,771.15279"
+       id="guide2997" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="301.9636,794.40706"
+       id="guide3007" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="64.29123,800.90458"
+       id="guide3009" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:69.91344451999999900px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#5aa02c;fill-opacity:1;stroke:#e3f4d7;font-family:Wide Latin;-inkscape-font-specification:Wide Latin"
+       x="60.391239"
+       y="281.20938"
+       id="text2985"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\senai-sc\text3003.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan2987"
+         x="60.391239"
+         y="281.20938">S</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:69.91344451999999900px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#5aa02c;fill-opacity:1;stroke:#e3f4d7;font-family:Wide Latin;-inkscape-font-specification:Wide Latin"
+       x="214.77232"
+       y="281.20938"
+       id="text2993"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="C:\Users\senai-sc\text3003.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan2995"
+         x="214.77232"
+         y="281.20938">C</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13.33268929px;font-style:oblique;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Tahoma;-inkscape-font-specification:Tahoma Oblique"
+       x="123.2401"
+       y="276.81836"
+       id="text2999"
+       sodipodi:linespacing="125%"
+       transform="scale(0.93662993,1.0676575)"
+       inkscape:export-filename="C:\Users\senai-sc\text3003.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3001"
+         x="123.2401"
+         y="276.81836">Sistema de Controle de Cantinas</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3003"
+       y="281.20938"
+       x="132.35643"
+       style="font-size:69.91344451999999900px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#5aa02c;fill-opacity:1;stroke:#e3f4d7;font-family:Wide Latin;-inkscape-font-specification:Wide Latin"
+       xml:space="preserve"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         y="281.20938"
+         x="132.35643"
+         id="tspan3005"
+         sodipodi:role="line">C</tspan></text>
+  </g>
+</svg>
