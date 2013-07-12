@@ -19,10 +19,16 @@ public class Empresa {
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="empresaGen")
 	@Column(name="empresaid")
 	private Long id;
+	
 	@Column(name="nome", length=60)
 	private String nome;
+	
 	@Column(name="usuario", length=20)
 	private String usuario;
+	
+	@Column(name="email", length=120)
+	private String email;
+	
 	@Column(name="senha", length=20)
 	private String senha;
 
@@ -50,6 +56,14 @@ public class Empresa {
 		this.usuario = usuario;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getSenha() {
 		return senha;
 	}

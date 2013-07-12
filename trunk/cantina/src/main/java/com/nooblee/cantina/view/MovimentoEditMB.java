@@ -19,6 +19,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 import com.nooblee.cantina.business.ClienteBC;
 import com.nooblee.cantina.business.MovimentoBC;
+import com.nooblee.cantina.domain.Cantina;
 import com.nooblee.cantina.domain.Cliente;
 import com.nooblee.cantina.domain.Movimento;
 
@@ -33,6 +34,10 @@ public class MovimentoEditMB extends AbstractEditPageBean<Movimento, Long> {
 	@Inject
 	private ClienteBC clienteBC;
 	
+	private Cantina cantina;
+	
+	private String cantinaTxt;
+	
 	private String codigoCliente;
 	
 	private String senhaCliente;
@@ -41,6 +46,23 @@ public class MovimentoEditMB extends AbstractEditPageBean<Movimento, Long> {
 	
 	@Inject
 	private Logger logger;
+	
+	public String getCantinaTxt() {
+		return cantinaTxt;
+	}
+	
+	public void setCantinaTxt(String cantinaTxt) {
+		this.cantinaTxt = cantinaTxt;
+		System.out.println("TESTE: " + cantinaTxt);
+	}
+	
+	public Cantina getCantina() {
+		return cantina;
+	}
+	
+	public void setCantina(Cantina cantina) {
+		this.cantina = cantina;
+	}
 	
 	public String getCodigoCliente() {
 		return codigoCliente;
@@ -173,5 +195,4 @@ public class MovimentoEditMB extends AbstractEditPageBean<Movimento, Long> {
 			// aparecer a janela de seleção
 		}
 	}
-
 }

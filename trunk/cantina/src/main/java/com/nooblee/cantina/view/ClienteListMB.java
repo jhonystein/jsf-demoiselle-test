@@ -42,5 +42,4 @@ public class ClienteListMB extends AbstractListPageBean<Cliente, Long> {
 		}
 		return getPreviousView();
 	}
-
 }
