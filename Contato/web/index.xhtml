@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Entre em contato</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="3">
+                
+                <h:outputLabel for="nome" value="Nome:" />
+                <h:inputText id="nome" valueChangeListener="#{contatoBean.deduzirEmail}" onblur="submit()" value="#{contatoBean.nome}" />
+                <h:message for="nome" />
+                
+                <h:outputLabel for="email" value="Email:" />
+                <h:inputText id="email" validator="#{contatoBean.validarEmail}" 
+                             value="#{contatoBean.email}" />
+                <h:message for="email" />
+                
+                <h:outputLabel for="telefone" value="Telefone:" />
+                <h:inputText id="telefone" value="#{contatoBean.telefone}" />
+                <h:message for="telefone" />
+
+                <h:outputLabel for="departamento" value="Departamento:" />
+                <h:selectOneMenu id="departamento" value="#{contatoBean.departamento}">
+                    <f:selectItems var="item" value="#{departamentoBean.registros}" itemLabel="#{item.nome}" />
+                </h:selectOneMenu>
+                <h:message for="departamento" />
+
+            </h:panelGrid>
+                
+            <h:panelGrid columns="1">
+                <h:outputLabel for="mensagem" value="Mensagem:" />
+                <h:inputTextarea id="mensagem" value="#{contatoBean.mensagem}" />
+                <h:message for="mensagem" />
+            </h:panelGrid>
+            
+            <h:commandButton value="Enviar" action="#{contatoBean.enviar}" />
+            <h:commandButton value="Adicionar Departamento" onclick="dlg.show();return false;"/>
+                
+        </h:form>
+
+        <p:dialog widgetVar="dlg">
+            <h:form>
+                <h:panelGrid columns="3">
+
+                    <h:outputLabel for="codigo" value="Código:" />
+                    <h:inputText id="codigo" value="#{departamentoBean.bean.codigo}" />
+                    <h:message for="codigo" />
+
+                    <h:outputLabel for="nome" value="Nome:" />
+                    <h:inputText id="nome" value="#{departamentoBean.bean.nome}" />
+                    <h:message for="nome" />
+
+
+                </h:panelGrid>
+                <h:commandButton value="Salvar" 
+                                 actionListener="#{departamentoBean.salvarDepartamento}"/>
+            </h:form>
+        </p:dialog>
+        
+    </h:body>
+</html>
+
